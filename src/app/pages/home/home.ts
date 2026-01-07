@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LogoAnimation } from '../../widgets/logo-animation/logo-animation';
+import { LogoAnimation } from '../../shared/components/logo-animation/logo-animation';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +7,4 @@ import { LogoAnimation } from '../../widgets/logo-animation/logo-animation';
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class Home {
-
-}
+export class Home {}
