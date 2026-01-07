@@ -11,8 +11,10 @@ export class LogoAnimation implements OnInit {
   private readonly tlm = new TimelineMax();
 
   ngOnInit(): void {
-    this.tlm.from('.logo__y', 1, {
-      y: -15,
-    });
+    this.tlm
+      .from('.logo__y', 1, {
+        y: -15,
+      })
+      .from('.logo__b', 1.6, { rotation: 40, transformOrigin: '100% 50%' }, '-=1.5');
   }
 }
