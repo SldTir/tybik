@@ -9,14 +9,10 @@ import { TimelineMax } from 'gsap';
 })
 export class LogoAnimation implements OnInit {
   private readonly tlm = new TimelineMax();
-  
+
   ngOnInit(): void {
-    this.tlm.from(
-      '.logo__y', 
-      1,
-       {
-        y: -15,
-       }
-      )
+    this.tlm.from('.logo__y', 1, {
+      y: -15,
+    });
   }
 }
