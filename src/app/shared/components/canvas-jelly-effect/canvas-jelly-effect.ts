@@ -12,6 +12,15 @@ export class CanvasJellyEffect implements OnInit {
 
   ngOnInit(): void {
     this.ctx = this.cvs().nativeElement.getContext('2d');
-    console.log(this.ctx);
+    this.drawBall(100, 100, 10);
+  }
+
+  private drawBall(x: number, y: number, r: number): void {
+    if (!this.ctx) return;
+    this.ctx.beginPath();
+    this.ctx.arc(x, y, r, 0, 2 * Math.PI);
+    this.ctx.fillStyle = '#ff0000';
+    this.ctx.fill();
+    this.ctx.closePath();
   }
 }
