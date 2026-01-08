@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, viewChild } from '@angular/core';
-
+import { Mouse } from './mouse';
 @Component({
   selector: 'app-canvas-jelly-effect',
   imports: [],
@@ -9,9 +9,12 @@ import { Component, ElementRef, OnInit, viewChild } from '@angular/core';
 export class CanvasJellyEffect implements OnInit {
   private readonly cvs = viewChild.required<ElementRef<HTMLCanvasElement>>('cvs');
   private ctx: CanvasRenderingContext2D | null = null;
+  private mouse: Mouse | null = null;
 
   ngOnInit(): void {
     this.ctx = this.cvs().nativeElement.getContext('2d');
+    if (!this.ctx) return;
+    this.mouse = new Mouse(this.cvs().nativeElement);
     this.drawBall(100, 100, 10);
   }
 
