@@ -15,7 +15,7 @@ export class CanvasJellyEffect implements OnInit {
     this.ctx = this.cvs().nativeElement.getContext('2d');
     if (!this.ctx) return;
     this.mouse = new Mouse(this.cvs().nativeElement);
-    this.drawBall(100, 100, 10);
+    this.render();
   }
 
   private drawBall(x: number, y: number, r: number): void {
@@ -25,5 +25,11 @@ export class CanvasJellyEffect implements OnInit {
     this.ctx.fillStyle = '#ff0000';
     this.ctx.fill();
     this.ctx.closePath();
+  }
+
+  private render(): void {
+    window.requestAnimationFrame(this.render.bind(this));
+    if (!this.mouse) return;
+    this.drawBall(this.mouse.x, this.mouse.y, 10);
   }
 }
