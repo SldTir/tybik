@@ -20,16 +20,20 @@ export class CanvasJellyEffect implements OnInit {
 
   private drawBall(x: number, y: number, r: number): void {
     if (!this.ctx) return;
+    this.ctx.save();
     this.ctx.beginPath();
     this.ctx.arc(x, y, r, 0, 2 * Math.PI);
     this.ctx.fillStyle = '#ff0000';
     this.ctx.fill();
     this.ctx.closePath();
+    this.ctx.restore();
   }
 
   private render(): void {
     window.requestAnimationFrame(this.render.bind(this));
-    if (!this.mouse) return;
+    if (!this.mouse || !this.ctx) return;
+    this.ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+    this.ctx.fillRect(0, 0, 600, 600);
     this.drawBall(this.mouse.x, this.mouse.y, 10);
   }
 }
