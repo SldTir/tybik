@@ -10,11 +10,13 @@ export class CanvasJellyEffect implements OnInit {
   private readonly cvs = viewChild.required<ElementRef<HTMLCanvasElement>>('cvs');
   private ctx: CanvasRenderingContext2D | null = null;
   private mouse: Mouse | null = null;
+  private balls: JellyEfectBall[] = [];
 
   ngOnInit(): void {
     this.ctx = this.cvs().nativeElement.getContext('2d');
     if (!this.ctx) return;
     this.mouse = new Mouse(this.cvs().nativeElement);
+    this.generateBalls();
     this.render();
   }
 
@@ -32,8 +34,19 @@ export class CanvasJellyEffect implements OnInit {
   private render(): void {
     window.requestAnimationFrame(this.render.bind(this));
     if (!this.mouse || !this.ctx) return;
-    this.ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-    this.ctx.fillRect(0, 0, 600, 600);
+    this.ctx.clearRect(0, 0, 600, 600);
     this.drawBall(this.mouse.x, this.mouse.y, 10);
+    this.balls.forEach((ball: JellyEfectBall) => {
+      this.drawBall(ball.x, ball.y, 2);
+    });
+  }
+
+  private generateBalls(): void {
+    for (let i = 0; i <= 20; i++) {
+      this.balls.push({
+        x: Math.random() * 600,
+        y: Math.random() * 600,
+      });
+    }
   }
 }
