@@ -16,7 +16,7 @@ export class LogoAnimation implements OnInit {
         y: -15,
       })
       .from('.logo__b', 1.5, { rotation: 60, transformOrigin: '100% 50%' }, '-=1')
-      .from('.logo__i', 1, { y: '100%' }, '-=0.8')
+      .from('.logo__i', 1, { y: '101%' }, '-=0.8')
       .from('.logo__k', 1.5, { y: -50 }, '-=1.3');
   }
 }
